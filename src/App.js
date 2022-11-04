@@ -1,7 +1,12 @@
 import React from 'react';
+import ProductDetailedPage from './components/ProductDetailedPage/ProductDetailedPage';
 
 function App() {
-  return <div>router 를 연결해주세요.</div>;
+  return (
+    <div>
+      <ProductDetailedPage />
+    </div>
+  );
 }
 
 export default App;
