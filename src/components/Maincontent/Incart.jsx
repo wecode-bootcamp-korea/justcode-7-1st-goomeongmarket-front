@@ -10,9 +10,8 @@ function Incart({
   price,
   img,
   title,
-  count,
-  setCount,
 }) {
+  const [count, setCount] = useState(1);
   // const onClickPlus = () => {
   //   setCount(count + 1);
   // };
@@ -58,7 +57,7 @@ function Incart({
     else setCart([...cart, cartItem]);
   };
 
-  console.log(cart);
+  // console.log(cart);
 
   return (
     <div className="popUpWraper">

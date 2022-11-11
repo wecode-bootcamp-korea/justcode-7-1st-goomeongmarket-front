@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
 import './Basket.scss';
 import ProductList from './ProductList';
-function Basket({ cart, converPrice, setCart, count, setCount }) {
-  const [liveValue, setLiveValue] = useState(0);
+function Basket({ cart, converPrice, setCart }) {
+  // const [liveValue, setLiveValue] = useState(0);
 
   // 장바구니 삭제하는 함수
   const onRemove = id => {
     setCart(cart.filter(el => el.id !== id));
   };
-  // const some = String(liveValue);
-  // const someArr = some.split('');
-  // const Arrmap = someArr.map(el => el);
-  // const somett = some.map(el => el);
-  // console.log(liveValue);
 
   // 장바구니 담은 배열값의 합
   let priceSum = cart.map(el => el.price);
@@ -28,12 +23,6 @@ function Basket({ cart, converPrice, setCart, count, setCount }) {
   // );
   const getToken = window.localStorage.getItem('token');
 
-  // const tokenVaildCheck = () => {
-  //   if (getToken !== '') {
-  //     console.log('된다');
-  //   } else console.log('안된다');
-  // };
-
   const payment = () => {
     if (getToken !== null) {
       fetch('http://localhost:8000/products/order', {
@@ -46,7 +35,7 @@ function Basket({ cart, converPrice, setCart, count, setCount }) {
           product_id: cart[0].id,
           ordered_number: cart[0].quantity,
         }),
-      }).then(alert('결제완료 !'));
+      }).then(alert('결제완료!'));
     } else alert('로그인하세요 !');
   };
 
@@ -87,9 +76,6 @@ function Basket({ cart, converPrice, setCart, count, setCount }) {
                       converPrice={converPrice}
                       onRemove={onRemove}
                       cart={cart}
-                      setLiveValue={setLiveValue}
-                      count={count}
-                      setCount={setCount}
                     />
                   );
                 })

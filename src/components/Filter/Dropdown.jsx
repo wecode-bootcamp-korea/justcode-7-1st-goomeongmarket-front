@@ -23,7 +23,7 @@ function Dropdown({ list, filtering, newfilterging }) {
                 onClick={() => newfilterging(1)}
               >
                 <input type="radio" id="check" name="together" />
-                채소
+                과일
               </label>
               <label
                 htmlFor="check1"
@@ -31,7 +31,7 @@ function Dropdown({ list, filtering, newfilterging }) {
                 onClick={() => newfilterging(2)}
               >
                 <input type="radio" id="check1" name="together" />
-                과일
+                수산﹒해산﹒건어물
               </label>
               <label
                 htmlFor="check3"
@@ -39,7 +39,7 @@ function Dropdown({ list, filtering, newfilterging }) {
                 onClick={() => newfilterging(3)}
               >
                 <input type="radio" id="check3" name="together" />
-                수산﹒해산﹒건어물
+                정육﹒계란
               </label>
               <label
                 htmlFor="check4"
@@ -47,7 +47,7 @@ function Dropdown({ list, filtering, newfilterging }) {
                 onClick={() => newfilterging(4)}
               >
                 <input type="radio" id="check4" name="together" />
-                정육﹒계란
+                채소
               </label>
               <label
                 htmlFor="check5"
@@ -64,7 +64,7 @@ function Dropdown({ list, filtering, newfilterging }) {
               <label
                 htmlFor="check6"
                 className="dropdown-item"
-                onClick={() => filtering(6)}
+                onClick={() => filtering(-6)}
               >
                 <input type="radio" id="check6" name="together" />
                 높은 가격순
@@ -72,7 +72,7 @@ function Dropdown({ list, filtering, newfilterging }) {
               <label
                 htmlFor="check7"
                 className="dropdown-item"
-                onClick={() => filtering(-6)}
+                onClick={() => filtering(6)}
               >
                 <input type="radio" id="check7" name="together" />
                 낮은 가격순

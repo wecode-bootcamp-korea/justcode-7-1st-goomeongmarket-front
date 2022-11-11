@@ -5,18 +5,12 @@ import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
 import Basket from '../../components/Basket/Basket';
 
-function Mainbasket({ cart, converPrice, setCart, count, setCount }) {
+function Mainbasket({ cart, converPrice, setCart }) {
   return (
     <div className="mainPages">
       <Nav />
       <Header />
-      <Basket
-        cart={cart}
-        converPrice={converPrice}
-        setCart={setCart}
-        count={count}
-        setCount={setCount}
-      />
+      <Basket cart={cart} converPrice={converPrice} setCart={setCart} />
       <Footer />
     </div>
   );

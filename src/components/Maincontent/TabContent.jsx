@@ -88,8 +88,8 @@ function TabContent({
             <div className="productInformation-filter">
               <span onClick={() => filtering(11)}>신상품순</span>
               <span onClick={() => filtering(16)}>판매량순</span>
-              <span onClick={() => filtering(-6)}>낮은 가격순</span>
-              <span onClick={() => filtering(6)}>높은 가격순</span>
+              <span onClick={() => filtering(6)}>낮은 가격순</span>
+              <span onClick={() => filtering(-6)}>높은 가격순</span>
             </div>
             <div className="productInformation-card">
               {filterTab.map((values, index) => {

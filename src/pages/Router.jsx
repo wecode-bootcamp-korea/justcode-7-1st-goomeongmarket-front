@@ -10,17 +10,16 @@ import Post from '../components/Signup/Post';
 import ProductDetailedPage from '../components/ProductDetailedPage/ProductDetailedPage';
 
 function Router() {
-  const [count, setCount] = useState(1);
   const converPrice = price => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
   const [cart, setCart] = useState([]);
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
-  // API
-  // const mockData = `http://localhost:8000/products/main`;
+  //API
+  const mockData = `http://localhost:8000/products/main`;
   //mock
-  const mockData = `http://localhost:3000/data/mockData.json`;
+  // const mockData = `http://localhost:3000/data/mockData.json`;
 
   useEffect(() => {
     fetch(mockData)
@@ -49,8 +48,6 @@ function Router() {
               converPrice={converPrice}
               filterTitle={filterTitle}
               setSearch={setSearch}
-              count={count}
-              setCount={setCount}
             />
           }
         />
@@ -61,8 +58,6 @@ function Router() {
               cart={cart}
               converPrice={converPrice}
               setCart={setCart}
-              count={count}
-              setCount={setCount}
             />
           }
         />
