@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import CardList from './CardList';
 import Dropdown from '../Filter/Dropdown';
 import './TabContent.scss';
 import { useParams, useSearchParams } from 'react-router-dom';
 
-function TabContent({
-  data,
-  setData,
-  converPrice,
-  tabList,
-  setTabList,
-  search,
-}) {
+function TabContent({ converPrice, tabList, setTabList, search }) {
   let [searchParms, setSearchParams] = useSearchParams();
 
   const category_id = searchParms.get('category_id');

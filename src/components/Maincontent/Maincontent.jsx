@@ -11,18 +11,15 @@ function Maincontent({ data, converPrice, cart, setCart, filterTitle }) {
 
   const NextSlide = () => {
     if (currentSlide >= TOTAL_SLIDES) {
-      // 더 이상 넘어갈 슬라이드가 없으면
-      setCurrentSlide(0); // 1번째 사진으로 넘어갑니다.
-      // return;  // 클릭이 작동하지 않습니다.
+      setCurrentSlide(0);
     } else {
       setCurrentSlide(currentSlide + 1);
     }
   };
-  // Prev 버튼 클릭 시
+
   const PrevSlide = () => {
     if (currentSlide === 0) {
-      setCurrentSlide(TOTAL_SLIDES); // 마지막 사진으로 넘어갑니다.
-      // return;  // 클릭이 작동하지 않습니다.
+      setCurrentSlide(TOTAL_SLIDES);
     } else {
       setCurrentSlide(currentSlide - 1);
     }
@@ -30,7 +27,7 @@ function Maincontent({ data, converPrice, cart, setCart, filterTitle }) {
 
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.5s ease-in-out';
-    slideRef.current.style.transform = `translateX(-${currentSlide}00%)`; // 백틱을 사용하여 슬라이드로 이동하는 에니메이션을 만듭니다.
+    slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
   }, [currentSlide]);
   console.log('data.lenth', data.length);
   return (
@@ -45,11 +42,6 @@ function Maincontent({ data, converPrice, cart, setCart, filterTitle }) {
           </button>
           <div className="MainContentTitle">
             <span style={{ fontWeight: 'bold' }}>이 상품 어때요 ?</span>
-            {/* {data.map((titleName, index) => {
-              const { titlename } = titleName;
-
-              return <span key={index}>{titlename}</span>;
-            })} */}
           </div>
 
           <div className="productInformation" ref={slideRef}>

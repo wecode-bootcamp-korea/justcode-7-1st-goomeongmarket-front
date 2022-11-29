@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './ProductList.scss';
 
-function ProductList({ converPrice, onRemove, cart, setLiveValue }) {
+function ProductList({ converPrice, onRemove, cart }) {
   //제품 수량 체크
   let [Quan, setQuan] = useState(1);
-  // let [currentPrice, setCurrentPrice] = useState(0);
 
   // 버튼 클릭 시 수량 +1 or -1
   const onClickPlus = () => {
@@ -15,10 +14,7 @@ function ProductList({ converPrice, onRemove, cart, setLiveValue }) {
   };
 
   const priceSum = Quan * cart.price;
-  // console.log(cart.id);
-  // useEffect(() => {
-  //   setLiveValue(priceSum);
-  // }, priceSum);
+
   return (
     <div className="boxSizing">
       <li className="productLi">
