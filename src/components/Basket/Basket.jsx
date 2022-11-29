@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Basket.scss';
 import ProductList from './ProductList';
 function Basket({ cart, converPrice, setCart }) {
-  // const [liveValue, setLiveValue] = useState(0);
-
   // 장바구니 삭제하는 함수
   const onRemove = id => {
     setCart(cart.filter(el => el.id !== id));
@@ -17,10 +15,6 @@ function Basket({ cart, converPrice, setCart }) {
 
   //결제 시 정보 보내는 코드
 
-  // const token = window.localStorage.setItem(
-  //   'token',
-  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjY4MDE2OTAxfQ.pifO4BZ5PmFJK9L8I8RimpzNccThL-RNCSVNSHuTcyw'
-  // );
   const getToken = window.localStorage.getItem('token');
 
   const payment = () => {
@@ -38,15 +32,6 @@ function Basket({ cart, converPrice, setCart }) {
       }).then(alert('결제완료!'));
     } else alert('로그인하세요 !');
   };
-
-  console.log(cart);
-
-  // const a = String(cart);
-  // console.log(a.id);
-  // const b = Number(a);
-  // const c = JSON.stringify(cart);
-  // console.log(c);
-  // console.log(typeof c);
 
   return (
     <div className="basketBody">

@@ -15,7 +15,7 @@ function CardList({ id, title, img, price, converPrice, cart, setCart }) {
     <div className="productBox">
       <img
         className="mainProductImg"
-        alt="제풒사진"
+        alt="제품사진"
         src={img}
         onClick={moveDetail}
       />

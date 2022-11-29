@@ -23,13 +23,6 @@ function Menu({ data, setData, setSearch, converPrice, search }) {
       .then(res => setTabList(res.data));
   }, [tabId]);
 
-  //가짜 목데이터
-  // useEffect(() => {
-  //   fetch(`http://localhost:3000/data/mock${tabId}.json`)
-  //     .then(res => res.json())
-  //     .then(res => setTabList(res.data));
-  // }, [tabId]);
-
   return (
     <div className="menuPages">
       <Nav setSearch={setSearch} />

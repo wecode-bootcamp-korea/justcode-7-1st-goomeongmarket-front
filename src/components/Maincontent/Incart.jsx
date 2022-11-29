@@ -12,12 +12,6 @@ function Incart({
   title,
 }) {
   const [count, setCount] = useState(1);
-  // const onClickPlus = () => {
-  //   setCount(count + 1);
-  // };
-  // const onClickMinus = () => {
-  //   setCount(count !== 0 ? count - 1 : (count = 0));
-  // };
 
   const handleQuantity = type => {
     if (type === 'plus') {
@@ -57,8 +51,6 @@ function Incart({
     else setCart([...cart, cartItem]);
   };
 
-  // console.log(cart);
-
   return (
     <div className="popUpWraper">
       <div className="popUpBox">
@@ -68,7 +60,6 @@ function Incart({
             <span>{converPrice(priceMultiplQanntity)}원</span>
             <div className="pmBox">
               <button
-                // onClick={onClickMinus}
                 onClick={() => handleQuantity('minus')}
                 type="button"
                 className="pmBoxInBtnM"
@@ -77,7 +68,6 @@ function Incart({
               </button>
               <span>{count}</span>
               <button
-                // onClick={onClickPlus}
                 onClick={() => handleQuantity('plus')}
                 type="button"
                 className="pmBoxInBtnP"
