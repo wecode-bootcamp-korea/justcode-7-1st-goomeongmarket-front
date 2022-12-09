@@ -155,7 +155,7 @@ function Signup() {
     if (!validEmail) {
       alert('이메일 형식이 아닙니다.');
     } else {
-      fetch('http://localhost:8000/users/account2', {
+      fetch('http://localhost:8000/users/check', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import TrueNav from './TrueNav';
 import './Nav.scss';
 function Nav({ setSearch }) {
   const navigateSignUp = useNavigate();
@@ -15,22 +16,25 @@ function Nav({ setSearch }) {
   const goToBasket = () => {
     NavigateBasket('/basket');
   };
+
+  const token = localStorage.getItem('token');
+
   return (
     <div className="fontAdd">
       <nav className="navMain ">
         <div className="navBody ">
           <div className="naviHead">
-            <button onClick={goToSignUp} className="signUp btnDesign">
-              회원가입
-            </button>
+            {token ? (
+              <>
+                <span className="welcome">웰컴</span>
+                <span className="user">홍길동님</span>
+                <span className="underTriangle">▼</span>
+                <div className="borderRight" />
+              </>
+            ) : (
+              <TrueNav goToSignUp={goToSignUp} goToLogin={goToLogin} />
+            )}
 
-            <div className="borderRight" />
-
-            <button onClick={goToLogin} className=" btnDesign">
-              로그인
-            </button>
-
-            <div className="borderRight" />
             <div className="dropDown">
               <button className=" btnDesign">고객센터 ▼</button>
             </div>

@@ -32,6 +32,23 @@
       align-items: center;
       justify-content: flex-end;
 
+      .welcome {
+        width: 40px;
+        border: 1px solid #949296;
+        border-radius: 10px;
+        font-size: 6px;
+        color: #949296;
+        margin-right: 5px;
+        text-align: center;
+      }
+      .user {
+        margin-right: 5px;
+        cursor: pointer;
+      }
+      .underTriangle {
+        font-size: 10px;
+        cursor: pointer;
+      }
       .btnDesign {
         border: none;
         background-color: inherit;

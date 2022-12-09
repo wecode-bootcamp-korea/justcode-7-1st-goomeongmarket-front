@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import './ProductList.scss';
 
-function ProductList({ converPrice, onRemove, cart, checkedItemHandler }) {
-  // const [reFresh, setReFresh] = useState();
-  let [Quan, setQuan] = useState(1);
+function ProductList({ converPrice, cart, checkedItemHandler }) {
+  let [Quan, setQuan] = useState(cart.put_quantity);
 
   // const [Checked, setChecked] = useState(false);
 
@@ -12,11 +12,26 @@ function ProductList({ converPrice, onRemove, cart, checkedItemHandler }) {
     checkedItemHandler(cart.id, target.checked);
   };
 
+  useEffect(() => {
+    fetch('http://localhost:8000/cart/quantity', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        token: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        product_id: cart.id,
+        put_quantity: Quan,
+      }),
+    });
+  }, [Quan]);
+
   const onClickPlus = () => {
     setQuan(Quan + 1);
   };
+
   const onClickMinus = () => {
-    setQuan(Quan !== 0 ? Quan - 1 : (Quan = 0));
+    setQuan(Quan - 1);
   };
 
   const priceSum = Quan * cart.price;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Basket.scss';
 import ProductList from './ProductList';
-function Basket({ cart, converPrice, setCart }) {
+function Basket({ cart, converPrice }) {
   const [checkList, setCheckList] = useState(new Set());
   const [productList, setProductList] = useState([]);
 
@@ -32,9 +32,9 @@ function Basket({ cart, converPrice, setCart }) {
     }
   };
 
-  const onRemove = id => {
-    setCart(cart.filter(el => el.id !== id));
-  };
+  // const onRemove = id => {
+  //   setCart(cart.filter(el => el.id !== id));
+  // };
 
   let priceSum = productList.map(el => el.price);
   let sumArr = priceSum.reduce((acc, cur) => {
@@ -59,9 +59,9 @@ function Basket({ cart, converPrice, setCart }) {
   };
 
   // const paymentListId = productList.map(el => el.id);
-  const paymentPutQuantity = productList.map(el => {
-    return { id: el.id, put_quantity: el.put_quantity };
-  });
+  // const paymentPutQuantity = productList.map(el => {
+  //   return { id: el.id, put_quantity: el.put_quantity };
+  // });
   //
 
   return (
@@ -91,7 +91,6 @@ function Basket({ cart, converPrice, setCart }) {
                     <ProductList
                       key={cart.id}
                       converPrice={converPrice}
-                      onRemove={onRemove}
                       cart={cart}
                       checkedItemHandler={checkedItemHandler}
                     />
