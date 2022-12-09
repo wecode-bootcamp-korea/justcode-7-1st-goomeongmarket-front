@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import './Incart.scss';
 
 function Incart({
@@ -10,9 +11,12 @@ function Incart({
   price,
   img,
   title,
+  slide,
+  popUp,
 }) {
   const [count, setCount] = useState(1);
 
+  const modalRef = useRef(null);
   const handleQuantity = type => {
     if (type === 'plus') {
       setCount(count + 1);
@@ -22,37 +26,56 @@ function Incart({
     }
   };
 
+  useEffect(() => {
+    if (popUp === true) {
+      modalRef.current.style.transform = `translateX(${Math.abs(slide)}px)`;
+    }
+  }, [popUp]);
+
   const priceMultiplQanntity = count * price;
-
-  const setQuantity = (id, quantity) => {
-    const found = cart.filter(el => el.id === id)[0];
-    const idx = cart.indexOf(found);
-    const cartItem = {
-      id: id,
-      img: img,
-      price: price,
-      title: title,
-      quantity: count,
-    };
-    setCart([...cart.slice(0, idx), cartItem, ...cart.slice(idx + 1)]);
-  };
-
   const handleCart = () => {
-    const cartItem = {
-      id: id,
-      img: img,
-      price: price,
-      title: title,
-      quantity: count,
-    };
-
-    const found = cart.find(el => el.id === cartItem.id);
-    if (found) setQuantity(cartItem.id, found.quantity + count);
-    else setCart([...cart, cartItem]);
+    fetch('http://localhost:8000/cart/update', {
+      method: 'POST',
+      headers: {
+        'content-Type': 'application/json',
+        token: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        product_id: id,
+        put_quantity: count,
+      }),
+    });
   };
+
+  // const setQuantity = (id, quantity) => {
+  //   const found = cart.filter(el => el.id === id)[0];
+  //   const idx = cart.indexOf(found);
+  //   const cartItem = {
+  //     id: id,
+  //     img: img,
+  //     price: price,
+  //     title: title,
+  //     quantity: count,
+  //   };
+  //   setCart([...cart.slice(0, idx), cartItem, ...cart.slice(idx + 1)]);
+  // };
+
+  // const handleCart = () => {
+  //   const cartItem = {
+  //     id: id,
+  //     img: img,
+  //     price: price,
+  //     title: title,
+  //     quantity: count,
+  //   };
+
+  //   const found = cart.find(el => el.id === cartItem.id);
+  //   if (found) setQuantity(cartItem.id, found.quantity + count);
+  //   else setCart([...cart, cartItem]);
+  // };
 
   return (
-    <div className="popUpWraper">
+    <div className="popUpWraper" ref={modalRef}>
       <div className="popUpBox">
         <div className="popUpBoxTop">
           <span>{title}</span>

@@ -1,23 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Basket.scss';
 import ProductList from './ProductList';
 function Basket({ cart, converPrice, setCart }) {
-  // 장바구니 삭제하는 함수
+  const [checkList, setCheckList] = useState(new Set());
+  const [productList, setProductList] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8000/cart/list', {
+      headers: {
+        'content-Type': 'application/json',
+        token: localStorage.getItem('token'),
+      },
+    })
+      .then(res => res.json())
+      .then(data => setProductList(data.data[0].products));
+  }, []);
+
+  // console.log(productList);
+  // let changeObj = [...checkList];
+  // useEffect(() => {
+  //   console.log('출력이 되는거야 마는거야');
+  // }, [changeObj]);
+
+  const checkedItemHandler = (id, isChecked) => {
+    if (isChecked) {
+      checkList.add(id);
+      setCheckList(checkList);
+    } else if (!isChecked && checkList.has(id)) {
+      checkList.delete(id);
+      setCheckList(checkList);
+    }
+  };
+
   const onRemove = id => {
     setCart(cart.filter(el => el.id !== id));
   };
 
-  // 장바구니 담은 배열값의 합
-  let priceSum = cart.map(el => el.price);
+  let priceSum = productList.map(el => el.price);
   let sumArr = priceSum.reduce((acc, cur) => {
     return acc + cur;
   }, 0);
 
-  //결제 시 정보 보내는 코드
-
-  const getToken = window.localStorage.getItem('token');
-
   const payment = () => {
+    const getToken = localStorage.getItem('token');
     if (getToken !== null) {
       fetch('http://localhost:8000/products/order', {
         method: 'POST',
@@ -33,6 +58,12 @@ function Basket({ cart, converPrice, setCart }) {
     } else alert('로그인하세요 !');
   };
 
+  // const paymentListId = productList.map(el => el.id);
+  const paymentPutQuantity = productList.map(el => {
+    return { id: el.id, put_quantity: el.put_quantity };
+  });
+  //
+
   return (
     <div className="basketBody">
       <div className="cartNameBox">
@@ -43,24 +74,26 @@ function Basket({ cart, converPrice, setCart }) {
           <div className="selectBox">
             <input className="checkBoxBtnHead" type="checkbox" id="check1" />
             <label form="check1" />
-            <span>전체선택(0/{cart.length})</span>
+            <span>전체선택(0/{productList.length})</span>
             <span className="borderRightInBasket" />
             <button className="selectDelBox">선택삭제</button>
           </div>
           <div className="productBox">
             <ul>
-              {cart.length === 0 ? (
+              {productList.length === 0 ? (
                 <div className="noProdInCart">
                   <h4>장바구니에 담긴 상품이 없습니다.</h4>
                 </div>
               ) : (
-                cart.map(cart => {
+                productList &&
+                productList.map(cart => {
                   return (
                     <ProductList
-                      key={cart.key}
+                      key={cart.id}
                       converPrice={converPrice}
                       onRemove={onRemove}
                       cart={cart}
+                      checkedItemHandler={checkedItemHandler}
                     />
                   );
                 })
@@ -121,7 +154,7 @@ function Basket({ cart, converPrice, setCart }) {
                 type="button"
               >
                 <span>
-                  {cart.length >= 1 ? '결제' : '장바구니가 비었습니다.'}
+                  {productList.length > 1 ? '결제' : '장바구니가 비었습니다.'}
                 </span>
               </button>
               <ul className="listController">

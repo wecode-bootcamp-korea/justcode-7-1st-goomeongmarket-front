@@ -1,15 +1,15 @@
 .productBox {
   width: 250px;
   height: 450px;
-  // margin-left: 18px;
-  margin-right: 20px;
+
+  margin-right: 25px;
 
   .mainProductImg {
     width: 250px;
     height: 320px;
     margin-bottom: 15px;
     cursor: pointer;
-    object-fit: cover; //이미지의 비율을 유지
+    object-fit: cover;
   }
   .productName {
     margin-bottom: 7px;
