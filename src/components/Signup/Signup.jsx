@@ -7,6 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import Post from './Post';
+import { BASE_URL } from '../../config';
 
 //이메일.비밀번호 정규표현식
 const EMAIL_REGEX = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
@@ -58,7 +59,7 @@ function Signup() {
   const sendHandler = e => {
     console.log(submitPrevent);
     e.preventDefault();
-    fetch('http://localhost:8000/users/account', {
+    fetch(`${BASE_URL}/users/account`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -155,7 +156,7 @@ function Signup() {
     if (!validEmail) {
       alert('이메일 형식이 아닙니다.');
     } else {
-      fetch('http://localhost:8000/users/check', {
+      fetch('`${BASE_URL}`/users/check', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

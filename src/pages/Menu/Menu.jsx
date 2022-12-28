@@ -6,7 +6,7 @@ import SliderImages from '../../components/SliderImages/SliderImages';
 import Footer from '../../components/Footer/Footer';
 import TabContent from '../../components/Maincontent/TabContent';
 import { useParams } from 'react-router-dom';
-
+import { BASE_URL } from '../../config';
 function Menu({ data, setData, setSearch, converPrice, search }) {
   const params = useParams();
   const [tabList, setTabList] = useState([]);
@@ -15,7 +15,7 @@ function Menu({ data, setData, setSearch, converPrice, search }) {
 
   //최종 API(각탭별 new,best,cheap)
   useEffect(() => {
-    fetch(`http://localhost:8000/products/${tabId}`, {
+    fetch(`${BASE_URL}/products/${tabId}`, {
       method: 'POST',
       headers: { 'content-Type': 'application/json' },
     })

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Basket.scss';
 import ProductList from './ProductList';
+import { BASE_URL } from '../../config';
 function Basket({ cart, converPrice }) {
   const [checkList, setCheckList] = useState(new Set());
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/cart/list', {
+    fetch(`${BASE_URL}/cart/list`, {
       headers: {
         'content-Type': 'application/json',
         token: localStorage.getItem('token'),
@@ -15,12 +16,6 @@ function Basket({ cart, converPrice }) {
       .then(res => res.json())
       .then(data => setProductList(data.data[0].products));
   }, []);
-
-  // console.log(productList);
-  // let changeObj = [...checkList];
-  // useEffect(() => {
-  //   console.log('출력이 되는거야 마는거야');
-  // }, [changeObj]);
 
   const checkedItemHandler = (id, isChecked) => {
     if (isChecked) {
@@ -32,10 +27,6 @@ function Basket({ cart, converPrice }) {
     }
   };
 
-  // const onRemove = id => {
-  //   setCart(cart.filter(el => el.id !== id));
-  // };
-
   let priceSum = productList.map(el => el.price);
   let sumArr = priceSum.reduce((acc, cur) => {
     return acc + cur;
@@ -44,7 +35,7 @@ function Basket({ cart, converPrice }) {
   const payment = () => {
     const getToken = localStorage.getItem('token');
     if (getToken !== null) {
-      fetch('http://localhost:8000/products/order', {
+      fetch('`${BASE_URL}`/products/order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { BASE_URL } from '../../config';
 import './ProductList.scss';
 
 function ProductList({ converPrice, cart, checkedItemHandler }) {
@@ -13,7 +13,7 @@ function ProductList({ converPrice, cart, checkedItemHandler }) {
   };
 
   useEffect(() => {
-    fetch('http://localhost:8000/cart/quantity', {
+    fetch(`${BASE_URL}/cart/quantity`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ function ProductList({ converPrice, cart, checkedItemHandler }) {
   const priceSum = Quan * cart.price;
 
   const delCart = () => {
-    fetch('http://localhost:8000/cart', {
+    fetch('`${BASE_URL}`/cart', {
       method: 'DELETE',
       headers: {
         'content-Type': 'application/json',

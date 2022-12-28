@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Login.scss';
 import axios from 'axios';
 import Modal from './Modal';
+import { BASE_URL } from '../../config';
 function Login() {
   const navigate = useNavigate();
   // const goToMain = () => {
@@ -31,7 +32,7 @@ function Login() {
   const handleLogin = e => {
     e.preventDefault();
     axios
-      .post('http://localhost:8000/users/login', { email, password })
+      .post(`${BASE_URL}/users/login`, { email, password })
       .then(res => {
         if (res.status == 200) {
           localStorage.setItem('token', res.data.token);
