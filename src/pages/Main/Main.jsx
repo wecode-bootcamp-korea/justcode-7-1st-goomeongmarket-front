@@ -34,6 +34,7 @@ function Main({
         count={count}
         setCount={setCount}
       />
+
       <Footer />
     </div>
   );

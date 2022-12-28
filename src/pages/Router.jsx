@@ -8,6 +8,7 @@ import Mainbasket from './Mainbasket/Mainbasket';
 import Incart from '../components/Maincontent/Incart';
 import Post from '../components/Signup/Post';
 import ProductDetailedPage from '../components/ProductDetailedPage/ProductDetailedPage';
+import { BASE_URL } from '../config';
 
 function Router() {
   const converPrice = price => {
@@ -17,7 +18,8 @@ function Router() {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
 
-  const mockData = `http://localhost:3001/data/mockData.json`;
+  const mockData = `${BASE_URL}/products/main`;
+  const mockData2 = './data/mockData.json';
 
   useEffect(() => {
     fetch(mockData)
@@ -25,7 +27,6 @@ function Router() {
       .then(json => setData(json.data));
   }, []);
 
-  //검색창 활성화 구현
   const filterTitle = data.filter(item =>
     item.title
       .replace(' ', '')
@@ -75,7 +76,7 @@ function Router() {
           }
         />
 
-        <Route path="/incart" element={<Incart />} />
+        <Route path="/incart/:id" element={<Incart />} />
         <Route
           path="/goods/:id"
           element={<ProductDetailedPage converPrice={converPrice} />}

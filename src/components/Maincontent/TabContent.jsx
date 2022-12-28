@@ -3,6 +3,7 @@ import CardList from './CardList';
 import Dropdown from '../Filter/Dropdown';
 import './TabContent.scss';
 import { useParams, useSearchParams } from 'react-router-dom';
+import { BASE_URL } from '../../config';
 
 function TabContent({ converPrice, tabList, setTabList, search }) {
   let [searchParms, setSearchParams] = useSearchParams();
@@ -12,7 +13,7 @@ function TabContent({ converPrice, tabList, setTabList, search }) {
 
   //최종API (사이드필터 및 mini필터)
   const filtering = pageNumber => {
-    fetch(`http://localhost:8000/products/${tabId}?sorted_by=${pageNumber}`, {
+    fetch(`${BASE_URL}/products/${tabId}?sorted_by=${pageNumber}`, {
       method: 'POST',
       headers: { 'content-Type': 'application/json' },
     })

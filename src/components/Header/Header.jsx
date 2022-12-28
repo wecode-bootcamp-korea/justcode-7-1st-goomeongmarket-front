@@ -10,12 +10,11 @@ function Header({ setSearch }) {
     NavigateBasket('/basket');
   };
 
-  const [isVisible, setIsVisible] = useState(false); // Nav가 보일지말지 정하는 setter
-
+  const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll); //clean up
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -59,17 +58,17 @@ function Header({ setSearch }) {
 
         <ul className="headerCenter" variant="tabs">
           <li className="headerCenterBox">
-            <Link className="linkToMenu" to={`/products/new`}>
+            <Link className="linkToMenu" to="/products/new">
               신상품
             </Link>
           </li>
           <li className="headerCenterBox">
-            <Link className="linkToMenu" to={`/products/best`}>
+            <Link className="linkToMenu" to="/products/best">
               베스트
             </Link>
           </li>
           <li className="headerCenterBox">
-            <Link className="linkToMenu" to={`/products/cheap`}>
+            <Link className="linkToMenu" to="/products/cheap">
               알뜰쇼핑
             </Link>
           </li>
@@ -103,17 +102,17 @@ function Header({ setSearch }) {
         </div>
         <ul className="scrollheaderCenter">
           <li className="scrollheaderCenterBox">
-            <Link className="scrollLinkToMenu" to={`/products/new`}>
+            <Link className="scrollLinkToMenu" to="/products/new">
               신상품
             </Link>
           </li>
           <li className="scrollheaderCenterBox">
-            <Link className="scrollLinkToMenu" to={`/products/best`}>
+            <Link className="scrollLinkToMenu" to="/products/best">
               베스트
             </Link>
           </li>
           <li className="scrollheaderCenterBox">
-            <Link className="scrollLinkToMenu" to={`/products/cheap`}>
+            <Link className="scrollLinkToMenu" to="/products/cheap">
               알뜰쇼핑
             </Link>
           </li>
